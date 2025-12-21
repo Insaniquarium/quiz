@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Quiz</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap">
+	<link rel="stylesheet" href="css/input.css">
+	<link rel="stylesheet" href="css/main.css">
+	<script defer src="js/main.js"></script>
+</head>
+<body>
+	<div id="pages">
+		<div id="menu" class="visible">
+			<h1>Quiz</h1>
+
+			<div class="form-block">
+				<label for="menu-num-questions">Number of questions:</label>
+				<input type="number" id="menu-num-questions">
+			</div>
+
+			<div class="form-block">
+				<label for="menu-category">Category:</label>
+				<select id="menu-category">
+					<option value="any">Any</option>
+				</select>
+			</div>
+
+			<div role="radiogroup" aria-labelledby="menu-difficulty-label">
+				<span class="form-label" id="menu-difficulty-label">Difficulty:</span>
+				<div>
+					<label>
+						<input type="radio" name="menu-difficulty" value="easy">
+						<span>Easy</span>
+					</label>
+				</div>
+				<div>
+					<label>
+						<input type="radio" name="menu-difficulty" value="medium">
+						<span>Medium</span>
+					</label>
+				</div>
+				<div>
+					<label>
+						<input type="radio" name="menu-difficulty" value="hard">
+						<span>Hard</span>
+					</label>
+				</div>
+			</div>
+
+			<div class="text-center">
+				<button id="menu-start-btn">Start quiz</button>
+			</div>
+		</div>
+
+		<div id="quiz">
+
+		</div>
+
+		<div id="results">
+
+		</div>
+	</div>
+</body>
+</html>

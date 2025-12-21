@@ -1,0 +1,81 @@
+/* We style inputs so they look consistent between platforms, and are large enough to be more accessible. */
+button, input, select {
+	border-radius: 6px;
+	border: 1px solid #8f8f9d;
+	color: inherit;
+	font: inherit;
+	box-sizing: border-box; /* spinners on number inputs cause size issues otherwise */
+}
+
+button:disabled, input:disabled, select:disabled {
+	opacity: 75%;
+}
+
+button:hover, input:hover, select:hover {
+	border-color: #676774;
+}
+
+button:active, input:active, select:active {
+	border-color: #484851;
+}
+
+button, select {
+	background-color: #e9e9ed;
+}
+
+button:hover, select:hover {
+	background-color: #d0d0d7;
+}
+
+button:active, select:active {
+	background-color: #b1b1b9;
+}
+
+button {
+	padding: 0.75em 2.5em;
+}
+
+select {
+	padding: 0.75em 1em;
+}
+
+input {
+	border-radius: 4px;
+	background-color: #fff;
+	padding: 0.75em;
+	margin: 0;
+}
+
+input[type="checkbox"], input[type="radio"] {
+	appearance: none;
+	padding: 0;
+	width: 1.5em;
+	height: 1.5em;
+}
+
+input[type="radio"] {
+	border-radius: 50%;
+}
+
+input:checked {
+	background-color: #5294e2;
+	border-color: #5294e2;
+}
+
+input:checked:hover {
+	background-color: #3e7cc2;
+	border-color: #3e7cc2;
+}
+
+input:checked:active {
+	background-color: #2664a3;
+	border-color: #2664a3;
+}
+
+/**
+ * Needed for inputs nested in labels.
+ * Annoyingly, for this to be most effective on the text, it should be in a span.
+ */
+label * {
+	vertical-align: middle;
+}
