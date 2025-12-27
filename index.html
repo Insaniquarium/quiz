@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap">
 	<link rel="stylesheet" href="css/input.css">
 	<link rel="stylesheet" href="css/main.css">
+	<script src="js/utils.js"></script>
 	<script defer src="js/main.js"></script>
 </head>
 <body>
@@ -78,31 +79,33 @@
 				<span class="form-label" id="menu-difficulty-label">Difficulty:</span>
 				<div>
 					<label>
-						<input type="radio" name="menu-difficulty" value="easy">
-						<span>Easy</span>
+						<input type="radio" name="menu-difficulty" value="easy" checked><span>Easy</span>
 					</label>
 				</div>
 				<div>
 					<label>
-						<input type="radio" name="menu-difficulty" value="medium">
-						<span>Medium</span>
+						<input type="radio" name="menu-difficulty" value="medium"><span>Medium</span>
 					</label>
 				</div>
 				<div>
 					<label>
-						<input type="radio" name="menu-difficulty" value="hard">
-						<span>Hard</span>
+						<input type="radio" name="menu-difficulty" value="hard"><span>Hard</span>
 					</label>
 				</div>
 			</div>
 
 			<div class="text-center">
-				<button id="menu-start-btn">Start quiz</button>
+				<button id="menu-start">Start quiz</button>
 			</div>
 		</div>
 
-		<div id="quiz">
-
+		<div id="quiz" class="visible">
+			<h1 id="quiz-heading"></h1>
+			<p id="quiz-question"></p>
+			<div id="quiz-options"></div>
+			<div class="text-center">
+				<button id="quiz-submit">Submit</button>
+			</div>
 		</div>
 
 		<div id="results">
