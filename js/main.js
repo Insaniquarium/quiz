@@ -7,6 +7,10 @@ const quizHeadingEl = document.getElementById("quiz-heading");
 const quizQuestionEl = document.getElementById("quiz-question");
 const quizOptionsEl = document.getElementById("quiz-options");
 const quizSubmitEl = document.getElementById("quiz-submit");
+const resultsMessageEl = document.getElementById("results-message");
+const resultsResponsesEl = document.getElementById("results-responses");
+const resultsReturnEl = document.getElementById("results-return");
+const pagesEl = document.getElementById("pages");
 
 const defaultQuestions = [
 	{
@@ -40,11 +44,11 @@ function startQuiz() {
 	showQuestion(quiz.question);
 }
 
-function createOptionElement(answer, id) {
+function createOptionElement(answer, index) {
 	let input = document.createElement("input");
 	input.type = "radio";
 	input.name = "quiz-option";
-	input.dataset.id = id;
+	input.dataset.id = index;
 
 	let span = document.createElement("span");
 	span.innerText = answer.text;
@@ -68,11 +72,13 @@ function showQuestion(index) {
 	options.forEach(e => quizOptionsEl.append(e));
 }
 
-function showResults() {
-
+function gatherResponse() {
+	const checked = quizOptionsEl.querySelector(":checked");
+	return checked ? Number(checked.dataset.id) : undefined;
 }
 
 function onSubmit() {
+	quiz.responses.push(gatherResponse());
 	nextQuestion();
 }
 
@@ -84,5 +90,73 @@ function nextQuestion() {
 	}
 }
 
+function createResultElement(index, question, response) {
+	let container = document.createElement("div");
+
+	let questionText = document.createElement("p");
+	questionText.className = "results-question";
+	questionText.innerText = `${index + 1}. ${question.question}`;
+	container.append(questionText);
+
+	question.answers.forEach((answer, i) => {
+		let input = document.createElement("input");
+		input.type = "radio";
+		input.checked = i == response;
+		
+		let text = document.createElement(answer.correct ? "strong" : "span");
+		text.innerText = answer.text;
+
+		let label = document.createElement("label");
+		label.append(input);
+		label.append(text);
+
+		container.append(label);
+	});
+
+	let resultText = document.createElement("p");
+
+	if (question.answers[response].correct) {
+		resultText.className = "text-correct";
+		resultText.innerText = "You answered correctly."
+	} else {
+		resultText.className = "text-incorrect";
+		resultText.innerText = "You answered incorrectly."
+	}
+
+	container.append(resultText);
+	return container;
+}
+
+function showResults() {
+	let score = 0;
+	let total = quiz.questions.length;
+
+	quiz.questions.forEach((question, i) => {
+		if (question.answers[quiz.responses[i]].correct) {
+			score++;
+		}
+	});
+
+	if (score == total) {
+		resultsMessageEl.innerText = `You scored ${score} out of ${total} questions! Well done!`;
+	} else {
+		resultsMessageEl.innerText = `You scored ${score} out of ${total} questions.`;
+	}
+	
+	clearChildren(resultsResponsesEl);
+
+	for (let i = 0; i < quiz.questions.length; i++) {
+		resultsResponsesEl.append(createResultElement(i, quiz.questions[i], quiz.responses[i]));
+	}
+}
+
+function changePage(id) {
+	pagesEl.querySelectorAll(".visible").forEach(e => {
+		e.classList.remove("visible");
+	});
+	pagesEl.querySelector("#" + id)?.classList.add("visible");
+}
+
 menuStartEl.onclick = startQuiz;
 quizSubmitEl.onclick = onSubmit;
+resultsReturnEl.onclick = () => { changePage("menu"); };

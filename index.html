@@ -77,21 +77,15 @@
 
 			<div role="radiogroup" aria-labelledby="menu-difficulty-label">
 				<span class="form-label" id="menu-difficulty-label">Difficulty:</span>
-				<div>
-					<label>
-						<input type="radio" name="menu-difficulty" value="easy" checked><span>Easy</span>
-					</label>
-				</div>
-				<div>
-					<label>
-						<input type="radio" name="menu-difficulty" value="medium"><span>Medium</span>
-					</label>
-				</div>
-				<div>
-					<label>
-						<input type="radio" name="menu-difficulty" value="hard"><span>Hard</span>
-					</label>
-				</div>
+				<label>
+					<input type="radio" name="menu-difficulty" value="easy" checked><span>Easy</span>
+				</label>
+				<label>
+					<input type="radio" name="menu-difficulty" value="medium"><span>Medium</span>
+				</label>
+				<label>
+					<input type="radio" name="menu-difficulty" value="hard"><span>Hard</span>
+				</label>
 			</div>
 
 			<div class="text-center">
@@ -108,8 +102,13 @@
 			</div>
 		</div>
 
-		<div id="results">
-
+		<div id="results" class="visible">
+			<h1>Results</h1>
+			<p id="results-message"></p>
+			<div id="results-responses"></div>
+			<div class="text-center">
+				<button id="results-return">Return to menu</button>
+			</div>
 		</div>
 	</div>
 </body>

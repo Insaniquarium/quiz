@@ -60,6 +60,16 @@ body {
 	color: red;
 }
 
-#quiz-options label {
+#menu label,
+#quiz-options label,
+#results-responses label {
 	display: block;
+}
+
+#results-message {
+	text-align: center;
+}
+
+.results-question {
+	font-weight: bold;
 }
