@@ -42,6 +42,7 @@ function newQuiz(questions) {
 function startQuiz() {
 	newQuiz(defaultQuestions);
 	showQuestion(quiz.question);
+	changePage("quiz");
 }
 
 function createOptionElement(answer, index) {
@@ -127,15 +128,19 @@ function createResultElement(index, question, response) {
 	return container;
 }
 
-function showResults() {
+function getScore() {
 	let score = 0;
-	let total = quiz.questions.length;
-
 	quiz.questions.forEach((question, i) => {
 		if (question.answers[quiz.responses[i]].correct) {
 			score++;
 		}
 	});
+	return score;
+}
+
+function showResults() {
+	const score = getScore();
+	const total = quiz.questions.length;
 
 	if (score == total) {
 		resultsMessageEl.innerText = `You scored ${score} out of ${total} questions! Well done!`;
@@ -148,12 +153,12 @@ function showResults() {
 	for (let i = 0; i < quiz.questions.length; i++) {
 		resultsResponsesEl.append(createResultElement(i, quiz.questions[i], quiz.responses[i]));
 	}
+
+	changePage("results");
 }
 
 function changePage(id) {
-	pagesEl.querySelectorAll(".visible").forEach(e => {
-		e.classList.remove("visible");
-	});
+	pagesEl.querySelectorAll(".visible").forEach(e => e.classList.remove("visible"));
 	pagesEl.querySelector("#" + id)?.classList.add("visible");
 }
 
