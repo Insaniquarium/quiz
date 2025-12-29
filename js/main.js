@@ -116,7 +116,7 @@ function createResultElement(index, question, response) {
 
 	let resultText = document.createElement("p");
 
-	if (question.answers[response].correct) {
+	if (question.answers[response]?.correct) {
 		resultText.className = "text-correct";
 		resultText.innerText = "You answered correctly."
 	} else {
@@ -131,7 +131,7 @@ function createResultElement(index, question, response) {
 function getScore() {
 	let score = 0;
 	quiz.questions.forEach((question, i) => {
-		if (question.answers[quiz.responses[i]].correct) {
+		if (question.answers[quiz.responses[i]]?.correct) {
 			score++;
 		}
 	});
