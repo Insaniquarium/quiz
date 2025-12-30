@@ -12,25 +12,6 @@ const resultsResponsesEl = document.getElementById("results-responses");
 const resultsReturnEl = document.getElementById("results-return");
 const pagesEl = document.getElementById("pages");
 
-const defaultQuestions = [
-	{
-		question: "yay or nay?",
-		answers: [
-			{ text: "yay", correct: true },
-			{ text: "nay", correct: false },
-			{ text: "may", correct: false }
-		]
-	},
-	{
-		question: "foo or bar?",
-		answers: [
-			{ text: "foo", correct: true },
-			{ text: "bar", correct: false },
-			{ text: "baz", correct: false }
-		]
-	},
-];
-
 let quiz = {};
 
 function newQuiz(questions) {
