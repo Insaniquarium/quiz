@@ -62,7 +62,7 @@ function shuffleAnswers(answers) {
 		const trueAnswer = answers.find(a => a.text == "True");
 		const falseAnswer = answers.find(a => a.text == "False");
 		if (trueAnswer && falseAnswer) {
-			[answers[0], answers[1]] = [trueAnswer, falseAnswer]
+			[answers[0], answers[1]] = [trueAnswer, falseAnswer];
 			return;
 		}
 	}
@@ -149,10 +149,10 @@ function createResultElement(index, question, response) {
 
 	if (question.answers[response]?.correct) {
 		resultText.className = "text-correct";
-		resultText.innerText = "You answered correctly."
+		resultText.innerText = "You answered correctly.";
 	} else {
 		resultText.className = "text-incorrect";
-		resultText.innerText = "You answered incorrectly."
+		resultText.innerText = "You answered incorrectly.";
 	}
 
 	container.append(resultText);
