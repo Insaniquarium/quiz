@@ -21,7 +21,8 @@ body {
 	border-radius: 10px;
 	box-shadow: 0 0 0 1px silver;
 	padding: 1.5em;
-	min-width: 45%;
+	box-sizing: border-box;
+	width: 800px;
 }
 
 #pages > *:not(.visible) {
@@ -72,4 +73,10 @@ body {
 
 #results strong {
 	text-decoration: underline;
+}
+
+@media (max-width: 800px) {
+	#pages > * {
+		width: 100%;
+	}
 }
