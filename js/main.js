@@ -15,13 +15,6 @@ const pagesEl = document.getElementById("pages");
 
 let quiz = {};
 
-function newQuiz(questions, options) {
-	quiz.question = 0;
-	quiz.questions = questions;
-	quiz.responses = [];
-	quiz.options = options;
-}
-
 function getSelectedCategory() {
 	return [menuCategoryEl.value, menuCategoryEl.options[menuCategoryEl.selectedIndex].innerHTML];
 }
@@ -42,6 +35,27 @@ async function startQuiz(questions, options) {
 	newQuiz(questions, options);
 	showQuestion(quiz.question);
 	changePage("quiz");
+}
+
+function newQuiz(questions, options) {
+	quiz.question = 0;
+	quiz.questions = questions;
+	quiz.responses = [];
+	quiz.options = options;
+	quiz.questions.forEach(question => shuffleAnswers(question.answers));
+}
+
+function shuffleAnswers(answers) {
+	// Always order true or false questions as true then false
+	if (answers.length == 2) {
+		const trueAnswer = answers.find(a => a.text == "True");
+		const falseAnswer = answers.find(a => a.text == "False");
+		if (trueAnswer && falseAnswer) {
+			[answers[0], answers[1]] = [trueAnswer, falseAnswer]
+			return;
+		}
+	}
+	shuffleArray(answers);
 }
 
 function createOptionElement(answer, index) {
@@ -65,8 +79,6 @@ function showQuestion(index) {
 	quizHeadingEl.innerText = `Question ${index + 1} of ${quiz.questions.length}`;
 	quizQuestionEl.innerHTML = question.question;
 	clearChildren(quizOptionsEl);
-
-	shuffleArray(question.answers);
 
 	question.answers.forEach((answer, i) => {
 		quizOptionsEl.append(createOptionElement(answer, i));
