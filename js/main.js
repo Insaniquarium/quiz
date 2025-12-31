@@ -12,6 +12,7 @@ const resultsDifficultyEl = document.getElementById("results-difficulty");
 const resultsResponsesEl = document.getElementById("results-responses");
 const resultsReturnEl = document.getElementById("results-return");
 const pagesEl = document.getElementById("pages");
+const throbberOverlayEl = document.getElementById("throbber-overlay");
 
 let quiz = {};
 
@@ -24,6 +25,7 @@ function getSelectedDifficulty() {
 }
 
 async function startQuizFromMenu() {
+	throbberOverlayEl.classList.remove("display-none");
 	try {
 		const [category, categoryName] = getSelectedCategory();
 		const difficulty = getSelectedDifficulty();
@@ -37,6 +39,7 @@ async function startQuizFromMenu() {
 		 */
 		alert(`An error occurred while starting quiz:\n\n${error.message}\n\nPlease try again later.`);
 	}
+	throbberOverlayEl.classList.add("display-none");
 }
 
 async function startQuiz(questions, options) {

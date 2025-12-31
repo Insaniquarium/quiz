@@ -79,6 +79,25 @@ body {
 	opacity: 75%;
 }
 
+#throbber-overlay {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background: #00000055;
+}
+
+#throbber-overlay img {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	filter: drop-shadow(0 0 2px gray);
+}
+
+.display-none {
+	display: none;
+}
+
 @media (max-width: 800px) {
 	#pages > * {
 		width: 100%;
