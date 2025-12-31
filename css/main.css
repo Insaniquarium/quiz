@@ -73,3 +73,7 @@ body {
 .results-question {
 	font-weight: bold;
 }
+
+#results strong {
+	text-decoration: underline;
+}

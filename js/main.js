@@ -56,9 +56,11 @@ function showQuestion(index) {
 	quizQuestionEl.innerHTML = question.question;
 	clearChildren(quizOptionsEl);
 
-	let options = question.answers.map((answer, i) => createOptionElement(answer, i));
-	shuffleArray(options);
-	options.forEach(e => quizOptionsEl.append(e));
+	shuffleArray(question.answers);
+
+	question.answers.forEach((answer, i) => {
+		quizOptionsEl.append(createOptionElement(answer, i));
+	});
 }
 
 function gatherResponse() {
@@ -92,6 +94,11 @@ function createResultElement(index, question, response) {
 		input.type = "radio";
 		input.checked = i == response;
 		
+		/**
+		 * The rationale behind using <strong> is that perhaps accessibility
+		 * software would emphasise the correct answers, but that hasn't been
+		 * tested and likely isn't fully sufficient.
+		 */
 		let text = document.createElement(answer.correct ? "strong" : "span");
 		text.innerHTML = answer.text;
 
