@@ -18,6 +18,8 @@
 		<div id="menu" class="visible">
 			<h1>Quiz</h1>
 
+			<!-- TODO: Description -->
+
 			<div class="form-block">
 				<label for="menu-num-questions">Number of questions:</label>
 				<select id="menu-num-questions">
@@ -103,8 +105,15 @@
 
 		<div id="results">
 			<h1>Results</h1>
-			<p id="results-message"></p>
+
+			<div class="text-center">
+				<p id="results-message"></p>
+				<p><b>Category:</b> <span id="results-category"></span></p>
+				<p><b>Difficulty:</b> <span id="results-difficulty"></span></p>
+			</div>
+
 			<div id="results-responses"></div>
+
 			<div class="text-center">
 				<button id="results-return">Return to menu</button>
 			</div>

@@ -66,10 +66,6 @@ body {
 	display: block;
 }
 
-#results-message {
-	text-align: center;
-}
-
 .results-question {
 	font-weight: bold;
 }

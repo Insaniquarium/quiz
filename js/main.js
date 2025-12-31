@@ -7,28 +7,39 @@ const quizQuestionEl = document.getElementById("quiz-question");
 const quizOptionsEl = document.getElementById("quiz-options");
 const quizSubmitEl = document.getElementById("quiz-submit");
 const resultsMessageEl = document.getElementById("results-message");
+const resultsCategoryEl = document.getElementById("results-category");
+const resultsDifficultyEl = document.getElementById("results-difficulty");
 const resultsResponsesEl = document.getElementById("results-responses");
 const resultsReturnEl = document.getElementById("results-return");
 const pagesEl = document.getElementById("pages");
 
 let quiz = {};
 
-function newQuiz(questions) {
+function newQuiz(questions, options) {
 	quiz.question = 0;
 	quiz.questions = questions;
 	quiz.responses = [];
+	quiz.options = options;
+}
+
+function getSelectedCategory() {
+	return [menuCategoryEl.value, menuCategoryEl.options[menuCategoryEl.selectedIndex].innerHTML];
 }
 
 function getSelectedDifficulty() {
 	return document.querySelector('#menu input[name=menu-difficulty]:checked').value;
 }
 
-async function startQuiz() {
-	const category = menuCategoryEl.value;
+async function startQuizFromMenu() {
+	const [category, categoryName] = getSelectedCategory();
 	const difficulty = getSelectedDifficulty();
 	const numQuestions = Number(menuNumQuestionsEl.value);
 	const questions = await fetchQuestionsByMenuID(category, difficulty, numQuestions);
-	newQuiz(questions);
+	await startQuiz(questions, { categoryName, difficulty: capitaliseWord(difficulty) });
+}
+
+async function startQuiz(questions, options) {
+	newQuiz(questions, options);
 	showQuestion(quiz.question);
 	changePage("quiz");
 }
@@ -45,7 +56,6 @@ function createOptionElement(answer, index) {
 	let label = document.createElement("label");
 	label.append(input);
 	label.append(span);
-
 	return label;
 }
 
@@ -143,7 +153,10 @@ function showResults() {
 	} else {
 		resultsMessageEl.innerText = `You scored ${score} out of ${total} questions.`;
 	}
-	
+
+	resultsCategoryEl.innerText = quiz.options.categoryName;
+	resultsDifficultyEl.innerText = quiz.options.difficulty;
+
 	clearChildren(resultsResponsesEl);
 
 	for (let i = 0; i < quiz.questions.length; i++) {
@@ -158,6 +171,6 @@ function changePage(id) {
 	pagesEl.querySelector("#" + id)?.classList.add("visible");
 }
 
-menuStartEl.onclick = startQuiz;
+menuStartEl.onclick = startQuizFromMenu;
 quizSubmitEl.onclick = onSubmit;
 resultsReturnEl.onclick = () => { changePage("menu"); };
