@@ -75,6 +75,10 @@ body {
 	text-decoration: underline;
 }
 
+#results input:disabled {
+	opacity: 75%;
+}
+
 @media (max-width: 800px) {
 	#pages > * {
 		width: 100%;

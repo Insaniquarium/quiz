@@ -63,6 +63,7 @@ function createOptionElement(answer, index) {
 	input.type = "radio";
 	input.name = "quiz-option";
 	input.dataset.id = index;
+	input.onchange = () => { quizSubmitEl.disabled = false; }; // Only allow submission after answer selected
 
 	let span = document.createElement("span");
 	span.innerHTML = answer.text;
@@ -79,6 +80,7 @@ function showQuestion(index) {
 	quizHeadingEl.innerText = `Question ${index + 1} of ${quiz.questions.length}`;
 	quizQuestionEl.innerHTML = question.question;
 	clearChildren(quizOptionsEl);
+	quizSubmitEl.disabled = true;
 
 	question.answers.forEach((answer, i) => {
 		quizOptionsEl.append(createOptionElement(answer, i));

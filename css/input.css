@@ -8,7 +8,7 @@ button, input, select {
 }
 
 button:disabled, input:disabled, select:disabled {
-	opacity: 75%;
+	opacity: 50%;
 }
 
 button:hover, input:hover, select:hover {
