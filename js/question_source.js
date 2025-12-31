@@ -17,7 +17,13 @@ async function fetchQuestionsFromOpenTDB(category, difficulty, amount) {
 	if (result?.response_code != 0)
 		throw new Error(`Failed to query OpenTDB; got response code ${result.response_code}`);
 
-	// Convert to our format
+	/**
+	 * Convert to our format.
+	 * The reasoning why our answers are in objects in an array is that it is more extensible.
+	 * That way, you could implement having questions that ask for all applicable options, in the
+	 * form of checkboxes and not radio buttons.
+	 * Architecting around this inherently introduces more complexity however.
+	 */
 	return result.results.map(question => ({
 		"question": question.question,
 		"answers": [
@@ -27,6 +33,7 @@ async function fetchQuestionsFromOpenTDB(category, difficulty, amount) {
 	}));
 }
 
+// Doing this with category ID prefixes allows for multiple question sources, whenever that may be
 async function fetchQuestionsByMenuID(id, difficulty, amount) {
 	if (id.startsWith("tdb-")) {
 		return fetchQuestionsFromOpenTDB(id.slice(4), difficulty, amount);
