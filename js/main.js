@@ -93,6 +93,7 @@ function createResultElement(index, question, response) {
 		let input = document.createElement("input");
 		input.type = "radio";
 		input.checked = i == response;
+		input.disabled = true;
 		
 		/**
 		 * The rationale behind using <strong> is that perhaps accessibility

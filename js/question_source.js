@@ -1,22 +1,3 @@
-const defaultQuestions = [
-	{
-		question: "yay or nay?",
-		answers: [
-			{ text: "yay", correct: true },
-			{ text: "nay", correct: false },
-			{ text: "may", correct: false }
-		]
-	},
-	{
-		question: "foo or bar?",
-		answers: [
-			{ text: "foo", correct: true },
-			{ text: "bar", correct: false },
-			{ text: "baz", correct: false }
-		]
-	},
-];
-
 async function fetchQuestionsFromOpenTDB(category, difficulty, amount) {
 	if (amount > 50)
 		throw new RangeError("Requesting more than 50 questions from OpenTDB requires an API key");
