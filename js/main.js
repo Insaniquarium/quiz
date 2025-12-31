@@ -1,7 +1,6 @@
 // Element IDs are actually already DOM element identifiers, but usage of that is discouraged
 const menuNumQuestionsEl = document.getElementById("menu-num-questions");
 const menuCategoryEl = document.getElementById("menu-category");
-const menuDifficultyEl = document.getElementById("menu-difficulty");
 const menuStartEl = document.getElementById("menu-start");
 const quizHeadingEl = document.getElementById("quiz-heading");
 const quizQuestionEl = document.getElementById("quiz-question");
@@ -20,8 +19,16 @@ function newQuiz(questions) {
 	quiz.responses = [];
 }
 
-function startQuiz() {
-	newQuiz(defaultQuestions);
+function getSelectedDifficulty() {
+	return document.querySelector('#menu input[name=menu-difficulty]:checked').value;
+}
+
+async function startQuiz() {
+	const category = menuCategoryEl.value;
+	const difficulty = getSelectedDifficulty();
+	const numQuestions = Number(menuNumQuestionsEl.value);
+	const questions = await fetchQuestionsByMenuID(category, difficulty, numQuestions);
+	newQuiz(questions);
 	showQuestion(quiz.question);
 	changePage("quiz");
 }
