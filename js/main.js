@@ -40,7 +40,7 @@ function createOptionElement(answer, index) {
 	input.dataset.id = index;
 
 	let span = document.createElement("span");
-	span.innerText = answer.text;
+	span.innerHTML = answer.text;
 
 	let label = document.createElement("label");
 	label.append(input);
@@ -53,7 +53,7 @@ function showQuestion(index) {
 	const question = quiz.questions[index];
 
 	quizHeadingEl.innerText = `Question ${index + 1} of ${quiz.questions.length}`;
-	quizQuestionEl.innerText = question.question;
+	quizQuestionEl.innerHTML = question.question;
 	clearChildren(quizOptionsEl);
 
 	let options = question.answers.map((answer, i) => createOptionElement(answer, i));
@@ -84,7 +84,7 @@ function createResultElement(index, question, response) {
 
 	let questionText = document.createElement("p");
 	questionText.className = "results-question";
-	questionText.innerText = `${index + 1}. ${question.question}`;
+	questionText.innerHTML = `${index + 1}. ${question.question}`;
 	container.append(questionText);
 
 	question.answers.forEach((answer, i) => {
@@ -93,7 +93,7 @@ function createResultElement(index, question, response) {
 		input.checked = i == response;
 		
 		let text = document.createElement(answer.correct ? "strong" : "span");
-		text.innerText = answer.text;
+		text.innerHTML = answer.text;
 
 		let label = document.createElement("label");
 		label.append(input);
