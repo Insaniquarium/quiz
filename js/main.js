@@ -24,11 +24,19 @@ function getSelectedDifficulty() {
 }
 
 async function startQuizFromMenu() {
-	const [category, categoryName] = getSelectedCategory();
-	const difficulty = getSelectedDifficulty();
-	const numQuestions = Number(menuNumQuestionsEl.value);
-	const questions = await fetchQuestionsByMenuID(category, difficulty, numQuestions);
-	await startQuiz(questions, { categoryName, difficulty: capitaliseWord(difficulty) });
+	try {
+		const [category, categoryName] = getSelectedCategory();
+		const difficulty = getSelectedDifficulty();
+		const numQuestions = Number(menuNumQuestionsEl.value);
+		const questions = await fetchQuestionsByMenuID(category, difficulty, numQuestions);
+		await startQuiz(questions, { categoryName, difficulty: capitaliseWord(difficulty) });
+	} catch (error) {
+		/**
+		 * Using alert isn't as presentable as a modal on the actual site, but
+		 * for something that should rarely happen, it's sufficient.
+		 */
+		alert(`An error occurred while starting quiz:\n\n${error.message}\n\nPlease try again later.`);
+	}
 }
 
 async function startQuiz(questions, options) {
