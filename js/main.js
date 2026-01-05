@@ -9,6 +9,7 @@ const quizSubmitEl = document.getElementById("quiz-submit");
 const resultsMessageEl = document.getElementById("results-message");
 const resultsCategoryEl = document.getElementById("results-category");
 const resultsDifficultyEl = document.getElementById("results-difficulty");
+const resultsTimeEl = document.getElementById("results-time");
 const resultsResponsesEl = document.getElementById("results-responses");
 const resultsReturnEl = document.getElementById("results-return");
 const pagesEl = document.getElementById("pages");
@@ -53,6 +54,7 @@ function newQuiz(questions, options) {
 	quiz.questions = questions;
 	quiz.responses = [];
 	quiz.options = options;
+	quiz.started = Date.now();
 	quiz.questions.forEach(question => shuffleAnswers(question.answers));
 }
 
@@ -181,6 +183,7 @@ function showResults() {
 
 	resultsCategoryEl.innerText = quiz.options.categoryName;
 	resultsDifficultyEl.innerText = quiz.options.difficulty;
+	resultsTimeEl.innerText = formatDuration(Date.now() - quiz.started);
 
 	clearChildren(resultsResponsesEl);
 

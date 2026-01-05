@@ -15,3 +15,12 @@ function clearChildren(element) {
 function capitaliseWord(word) {
 	return word.charAt(0).toUpperCase() + word.slice(1);
 }
+
+// Uses a recent JavaScript feature, thus needs a browser made past early 2025
+function formatDuration(ms) {
+	const duration = {
+		minutes: Math.floor((ms / 60000) % 60),
+		seconds: Math.floor((ms / 1000) % 60)
+	};
+	return new Intl.DurationFormat("en").format(duration);
+}
