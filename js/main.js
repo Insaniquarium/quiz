@@ -181,7 +181,7 @@ function showResults() {
 		resultsMessageEl.innerText = `You scored ${score} out of ${total} questions.`;
 	}
 
-	resultsCategoryEl.innerText = quiz.options.categoryName;
+	resultsCategoryEl.innerHTML = quiz.options.categoryName;
 	resultsDifficultyEl.innerText = quiz.options.difficulty;
 	resultsTimeEl.innerText = formatDuration(Date.now() - quiz.started);
 
