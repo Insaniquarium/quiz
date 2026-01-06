@@ -9,7 +9,7 @@ async function fetchQuestionsFromOpenTDB(category, difficulty, amount) {
 		category = "";
 
 	// Making a URL object and setting its search property would be a more proper way than just appending to a URL string
-	const params = new URLSearchParams({ category, difficulty, amount });
+	const params = new URLSearchParams({ category, difficulty, amount, type: "multiple" });
 	const response = await fetch(openTDBEndpoint + "?" + params); // OpenTDB does no-cache for us
 
 	if (!response.ok)
