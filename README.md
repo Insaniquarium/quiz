@@ -18,8 +18,21 @@ It utilises pure JavaScript and CSS, with no frameworks, and is responsive to di
 ## Key Features
 
 - Flexibility
+	- Users can choose the subject area they wish to be quizzed on, the number of questions, and the difficulty.
 - Results page
+	- At the end of the quiz, you are shown how many questions you got right, what you answered the questions with, and what options were right.
 - Elapsed time
+	- The results page shows how much time you spent doing the quiz, which users can use to see if their recall skills are improving.
+
+## Screenshots
+
+Took at different resolutions to showcase responsiveness.
+
+<p align="center"><img src="docs/menu_page_mobile.png" height="426" alt="Menu page on mobile"></p>
+
+![Quiz page on laptop](docs/quiz_page_laptop.png)
+
+![Results page on desktop](docs/results_page_desktop.png)
 
 ## Constraints
 
