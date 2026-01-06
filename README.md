@@ -6,7 +6,15 @@ It utilises pure JavaScript and CSS, with no frameworks, and is responsive to di
 
 ## Project Brief
 
+I was tasked to develop an online quiz where users can answer a series of questions and receive feedback based on how they answered.
 
+The quiz should have multiple-choice options and navigation buttons to submit. I was given the choice to decide if each question should be on its own page, and if there should be other types of questions (e.g., fill-in-the-blank), but I chose to stay with multiple-choice questions and to present each question on its own page.
+
+Questions should be loaded at random each time, and this criteria is met as OpenTDB as the question source does that for me.
+
+At the end of the quiz I could decide if there should be a summary of the user's performance. The results page I ended up developing shows users how many questions they got right, the category and difficulty they started with, time elapsed, and the answers they selected, with the correct answers being indicated in bold.
+
+It should also be flexible, allowing the user to choose what subject it is about.
 
 ## Technologies
 
