@@ -1,3 +1,5 @@
+const openTDBEndpoint = "https://opentdb.com/api.php";
+
 async function fetchQuestionsFromOpenTDB(category, difficulty, amount) {
 	if (amount > 50)
 		throw new RangeError("Requesting more than 50 questions from OpenTDB requires an API key");
@@ -6,8 +8,9 @@ async function fetchQuestionsFromOpenTDB(category, difficulty, amount) {
 	if (!category)
 		category = "";
 
+	// Making a URL object and setting its search property would be a more proper way than just appending to a URL string
 	const params = new URLSearchParams({ category, difficulty, amount });
-	const response = await fetch("https://opentdb.com/api.php?" + params); // OpenTDB does no-cache for us
+	const response = await fetch(openTDBEndpoint + "?" + params); // OpenTDB does no-cache for us
 
 	if (!response.ok)
 		throw new Error(`Failed to query OpenTDB; got HTTP ${response.status}`);
